@@ -46,7 +46,9 @@
                   <div class=""></div>
                   <div class="row align-items-end">
                     <div class="col-md-6">
-                      <a class="btn btn-primary">Add to Basket</a>
+                     
+                      <a @click="addToCart(item)"  class="btn btn-primary">Add to Basket</a>
+ 
                     </div>
                     <div class="col-md-6">
                       <button class="btn btn-success">Buy now</button>
@@ -62,19 +64,26 @@
     </div>
   </div>
 
+  <Cart :items="items" > </Cart>
+
 </template>
 
 <script>
 import {getAllByCategoryId} from "@/common/product.service";
 import {BASE_URL} from "@/common/config";
+import Cart from './Cart.vue'
+
 export default {
   name: 'ProductListComponent',
-  components: {},
+  components: {
+    Cart
+  },
 
   props:["myprop"],
 
   data() {
-    return {products: []
+    return {products: [],
+       items:[]
     }
   },
   mounted() {
@@ -94,10 +103,14 @@ export default {
       this.products = response.data;
     })
     },
-
     getImageUrl(id) {
       return BASE_URL + 'filestore/' + id;
     },
+
+    addToCart(item){
+        this.items=item
+        alert(item.name)
+    }
   }
 }
 </script>

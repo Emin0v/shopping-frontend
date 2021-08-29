@@ -1,5 +1,5 @@
 <template>
-  <transition name="modal" v-if="showModal" >
+  <transition name="modal" v-if="show" >
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
@@ -7,7 +7,7 @@
             <div class="modal-header">
               <thead class="table">
                 <tr>
-                  <th class="col">#</th>
+                  <th class="col">name</th>
                   <th class="col">Picture</th>
                   <th class="col">Price</th>
                   <th class="col">Count</th>
@@ -20,8 +20,9 @@
 
             <div class="modal-body">
               <tbody>
-                <tr>
-                  <td class="col">1</td>
+                <tr v-for='item  in items' :key='item'>
+                  
+                  <td class="col">{{item.name}}</td>
                   <td class="col">asdasd</td>
 
                   <td class="col">asdasd</td>
@@ -37,7 +38,7 @@
           <div class="modal-footer">
             <slot name="footer">
               <div > 
-                <button v-if="showModal" @click="showModal=false" class=" btn btn-secondary">Close</button>
+                <button  @click="$emit('showModal',false)" class=" btn btn-secondary">Close</button>
 
                 <button class=" btn btn-info fa fa-shopping-cart">Buy</button>
               </div>
@@ -52,11 +53,23 @@
 
 <script>
 export default {
+
+  props:{
+    show:{
+      type: Boolean,
+      default: false
+    },
+    items:{
+      type: String
+    }
+  },
+
   data() {
     return {
-      showModal: true,
+      //  showModal: true,
     };
   },
+
 };
 </script>
 

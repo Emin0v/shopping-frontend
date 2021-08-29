@@ -93,7 +93,7 @@
                   <a href="#"><i class="fa fa-star"></i> Wishlist</a>
                 </li>
                 <li>
-                  <a @click="show=!show"
+                  <a @click="showModal()" 
                     ><i class="fa fa-shopping-cart"></i> Cart</a
                   >
                 </li>
@@ -177,7 +177,7 @@
       </ul>
     </div>
   </div>
-  <Cart v-if="show"></Cart>
+  <Cart :show="show" @showModal="show=false" ></Cart>
 </template>
 
 <script>
@@ -206,7 +206,11 @@ export default {
         this.categories = response.data;
       });
     },
-    
+
+    showModal(){
+        this.show=true;
+    }
+
   },
 };
 </script>
