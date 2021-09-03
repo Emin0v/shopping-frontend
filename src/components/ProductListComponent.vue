@@ -34,7 +34,7 @@
                   <div class="row info">
                     <div class="col-md-6 quantity">
                       <label for="quantity">Quantity:</label>
-                      <input id="quantity" type="number" value="1" class="form-control quantity-input">
+                      <input v-model="quantity" type="number"  class="form-control quantity-input">
                     </div>
                     <div class="col-md-6 price">
                       <span>{{ item.money }} {{ item.price }}  {{ item.moneySymbol }}</span>
@@ -70,7 +70,10 @@
 
 <script>
 import {getAllByCategoryId} from "@/common/product.service";
+// import {saveToCart} from "@/common/product.service";
+
 import {BASE_URL} from "@/common/config";
+// import {CART_URL} from "@/common/config";
 import Cart from './Cart.vue'
 
 export default {
@@ -83,7 +86,8 @@ export default {
 
   data() {
     return {products: [],
-       items:[]
+       items:[],
+       quantity: 1
     }
   },
   mounted() {
@@ -94,7 +98,6 @@ export default {
   
   watch: {
     myprop(){
-     console.log("myprop: "+ this.myprop);
      this.getAllProducts(this.myprop);
   }},
   methods: {
@@ -108,8 +111,18 @@ export default {
     },
 
     addToCart(item){
+        
+        alert(typeof(item.id))
+        // saveToCart(CART_URL+'/add',{
+        //      "cartId":"",
+        //      "productId":item.id,
+        //      "quantity":this.quantity
+        // })
+
+        
         this.items=item
-        alert(item.name)
+
+
     }
   }
 }

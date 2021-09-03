@@ -1,4 +1,5 @@
 import {get} from "@/common/api.service";
+import { post } from "./api.service";
 
 
 export function getProductDetailById(id) {
@@ -15,4 +16,8 @@ export function getCategories(){
 
 export function getAllProducts(){
     return get('products')
+}
+
+export function saveToCart(path,params){
+    return post(path,params);
 }
