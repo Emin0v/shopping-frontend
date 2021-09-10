@@ -72,8 +72,8 @@
 import {getAllByCategoryId} from "@/common/product.service";
 // import {saveToCart} from "@/common/product.service";
 
-import {BASE_URL} from "@/common/config";
-// import {CART_URL} from "@/common/config";
+import {PRODUCT_URL} from "@/common/config";
+
 import Cart from './Cart.vue'
 
 export default {
@@ -107,16 +107,16 @@ export default {
     })
     },
     getImageUrl(id) {
-      return BASE_URL + 'filestore/' + id;
+      return PRODUCT_URL + 'filestore/' + id;
     },
 
     addToCart(item){
         
-        alert(typeof(item.id))
-        // saveToCart(CART_URL+'/add',{
+        alert()
+        // saveToCart({
         //      "cartId":"",
         //      "productId":item.id,
-        //      "quantity":this.quantity
+        //      "count":this.quantity
         // })
 
         

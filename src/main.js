@@ -3,7 +3,7 @@ import App from './App.vue'
 import VueAxios from "vue-axios"
 import axios from 'axios'
 import router from './router'
-import {BASE_URL} from "@/common/config"
+// import {BASE_URL} from "@/common/config"
 // import 'bootstrap/dist/css/bootstrap.min.css'
 
 //  css 
@@ -18,6 +18,6 @@ import "./assets/css/responsive.css"
 
 
 
-axios.defaults.baseURL = BASE_URL;
+// axios.defaults.baseURL = BASE_URL;
 
 createApp(App).use(router).use(VueAxios, axios).mount('#body')
