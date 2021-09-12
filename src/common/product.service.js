@@ -3,6 +3,8 @@ import { post } from "./api.service";
 import { PRODUCT_URL } from "./config";
 import { AUTH_URL } from "./config";
 import { CART_URL } from "./config";
+import authHeader from './auth'; 
+
 
 export function getProductDetailById(id) {
     return get(PRODUCT_URL+'products/' + id);
@@ -21,7 +23,8 @@ export function getAllProducts(){
 }
 
 export function saveToCart(params){
-    return post(CART_URL+'/ ',params);
+    console.log("authHeader=>"+authHeader());
+    return post(CART_URL,params,authHeader());
 }
 
 export function register(params){

@@ -7,8 +7,8 @@ export function get(path=''){
     })
 }
 
-export function post(path='',params){
-    return axios.post(path,params).catch(err=> {
+export function post(path='',params,headers){
+    return axios.post(path,params,headers).catch(err=> {
         console.log(err);
         throw new Error('Http Post Error : api.service');
     })

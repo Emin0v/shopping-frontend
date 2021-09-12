@@ -25,7 +25,8 @@ export default {
     return {
         email:'',
         password:'',
-        rememberMe:false
+        rememberMe:false,
+
     };
   },
 
@@ -35,8 +36,17 @@ export default {
          email:this.email,
          password:this.password,
          rememberMe:this.rememberMe
+       }).then(response=>{
+          if (response.data.authToken) {
+          localStorage.setItem('user', JSON.stringify(response.data));
+        }
+       }).catch(err=>{
+         
+         alert(err);
+
        })
      }
-  }
+  },
+
 };
 </script>

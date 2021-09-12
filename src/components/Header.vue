@@ -93,7 +93,7 @@
                   <a href="#"><i class="fa fa-star"></i> Wishlist</a>
                 </li>
                 <li>
-                  <a @click="showModal()" 
+                  <a href="cart"
                     ><i class="fa fa-shopping-cart"></i> Cart</a
                   >
                 </li>
@@ -133,7 +133,7 @@
                   <a href="#">Shop<i class="fa fa-angle-down"></i></a>
                   <ul role="menu" class="sub-menu">
                     <li><a href="shop">Products</a></li>
-                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="cart">Cart</a></li>
                     <li><a href="login">Login</a></li>
                   </ul>
                 </li>
@@ -159,40 +159,16 @@
     <!--/header-bottom-->
   </header>
   <!--/header-->
-  <div class="category-tab container">
-    <div class="col-sm-12">
-      <ul class="nav nav-tabs">
-        <li v-for="category in categories" :key="category">
-          <!-- <a v-bind:href="'/category/'+ category.id">{{category.name}}</a> -->
-
-          <router-link
-            :to="{
-              path: '/product',
-              query: { myprop: category.id },
-            }"
-          >
-            {{ category.name }}
-          </router-link>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <Cart :show="show" @showModal="show=false" ></Cart>
 </template>
 
 <script>
 import { getCategories } from "@/common/product.service";
-import Cart from "../components/Cart.vue";
 
 export default {
   name: "Header",
-  components: {
-    Cart,
-  },
 
   data() {
     return {
-      show: false,
       categories: {},
     };
   },
@@ -206,10 +182,6 @@ export default {
         this.categories = response.data;
       });
     },
-
-    showModal(){
-        this.show=true;
-    }
 
   },
 };

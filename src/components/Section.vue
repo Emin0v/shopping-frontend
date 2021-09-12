@@ -79,7 +79,7 @@ import Category from './Category.vue';
 import RecItem from './RecItem.vue'
 import FeaturesItems from './FeaturesItems.vue'
 import {getAllProducts} from "@/common/product.service";
-import {BASE_URL} from "@/common/config";
+import {PRODUCT_URL} from "@/common/config";
 export default {
   components: { Category, RecItem,FeaturesItems},
     name: 'Section',
@@ -109,7 +109,7 @@ export default {
 	})},
 
     getImageUrl(id) {
-      return BASE_URL + 'filestore/' + id;
+      return PRODUCT_URL + 'filestore/' + id;
     },
 
     getCategories() {

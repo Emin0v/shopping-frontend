@@ -18,7 +18,6 @@
   </section>
   <!--/form-->
 
-  <Cart></Cart>
 </template>
 
 <script>

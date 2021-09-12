@@ -2,28 +2,48 @@
   <div class="container shopping-cart">
     <div class="content">
       <div class="row">
-        <div class="col-md-12 col-lg-12" v-for='(item, index) in products' :key='index'>
+        <div
+          class="col-md-12 col-lg-12"
+          v-for="(item, index) in products"
+          :key="index"
+        >
           <div class="items">
             <div class="product">
               <div class="row">
                 <div class="col-md-3">
-                  <img class="img-fluid mx-auto d-block image" :src="getImageUrl(item.image)">
+                  <img
+                    class="img-fluid mx-auto d-block image"
+                    :src="getImageUrl(item.image)"
+                  />
                 </div>
                 <div class="col-md-6">
                   <div class="info">
                     <div class="row">
                       <div class="col-md-5 product-name">
                         <div class="product-name">
-                          <a class="product-name" v-bind:href="'/detail/' + item.id">{{ item.name }}</a>
+                          <a
+                            class="product-name"
+                            v-bind:href="'/detail/' + item.id"
+                            >{{ item.name }}</a
+                          >
                           <div class="product-info">
-                            <div class="product-info-detail">{{ item.description }}</div>
-                            <div class="product-info-detail">Seller: <a class="value" v-bind:href="item.seller.id">{{
+                            <div class="product-info-detail">
+                              {{ item.description }}
+                            </div>
+                            <div class="product-info-detail">
+                              Seller:
+                              <a class="value" v-bind:href="item.seller.id">{{
                                 item.seller.name
                               }}</a>
                             </div>
-                            <div class="product-info-detail"><span v-if="item.freeDelivery"> FREE </span>Delivery: <span
-                                class="value">{{ item.deliveryIn }}</span></div>
-                            <div class="product-info-detail"><span class="value" v-html="item.features"></span></div>
+                            <div class="product-info-detail">
+                              <span v-if="item.freeDelivery"> FREE </span
+                              >Delivery:
+                              <span class="value">{{ item.deliveryIn }}</span>
+                            </div>
+                            <div class="product-info-detail">
+                              <span class="value" v-html="item.features"></span>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -34,10 +54,17 @@
                   <div class="row info">
                     <div class="col-md-6 quantity">
                       <label for="quantity">Quantity:</label>
-                      <input v-model="quantity" type="number"  class="form-control quantity-input">
+                      <input
+                        v-model="quantity"
+                        type="number"
+                        class="form-control quantity-input"
+                      />
                     </div>
                     <div class="col-md-6 price">
-                      <span>{{ item.money }} {{ item.price }}  {{ item.moneySymbol }}</span>
+                      <span
+                        >{{ item.money }} {{ item.price }}
+                        {{ item.moneySymbol }}</span
+                      >
                     </div>
                   </div>
                 </div>
@@ -46,9 +73,9 @@
                   <div class=""></div>
                   <div class="row align-items-end">
                     <div class="col-md-6">
-                     
-                      <a @click="addToCart(item)"  class="btn btn-primary">Add to Basket</a>
- 
+                      <a @click="addToCart(item)" class="btn btn-primary"
+                        >Add to Basket</a
+                      >
                     </div>
                     <div class="col-md-6">
                       <button class="btn btn-success">Buy now</button>
@@ -58,80 +85,80 @@
               </div>
             </div>
           </div>
-          <hr>
+          <hr />
         </div>
       </div>
     </div>
   </div>
 
-  <Cart :items="items" > </Cart>
-
 </template>
 
 <script>
-import {getAllByCategoryId} from "@/common/product.service";
-// import {saveToCart} from "@/common/product.service";
+import { getAllByCategoryId } from "@/common/product.service";
+import { saveToCart } from "@/common/product.service";
 
-import {PRODUCT_URL} from "@/common/config";
+import { PRODUCT_URL } from "@/common/config";
 
-import Cart from './Cart.vue'
+// import Cart from './Cart.vue'
 
 export default {
-  name: 'ProductListComponent',
-  components: {
-    Cart
-  },
+  name: "ProductListComponent",
+  // components: {
+  //   Cart
+  // },
 
-  props:["myprop"],
+  props: ["myprop"],
 
   data() {
-    return {products: [],
-       items:[],
-       quantity: 1
-    }
+    return {
+      products: [],
+      //  items:[],
+      quantity: 1,
+    };
   },
   mounted() {
-    getAllByCategoryId(this.myprop).then(response=>{
+    getAllByCategoryId(this.myprop).then((response) => {
       this.products = response.data;
-    })
-    },
-  
+    });
+  },
+
   watch: {
-    myprop(){
-     this.getAllProducts(this.myprop);
-  }},
+    myprop() {
+      this.getAllProducts(this.myprop);
+    },
+  },
   methods: {
-    getAllProducts(myprop){
-      getAllByCategoryId(myprop).then(response=>{
-      this.products = response.data;
-    })
+    getAllProducts(myprop) {
+      getAllByCategoryId(myprop).then((response) => {
+        this.products = response.data;
+      });
     },
     getImageUrl(id) {
-      return PRODUCT_URL + 'filestore/' + id;
+      return PRODUCT_URL + "filestore/" + id;
     },
 
-    addToCart(item){
-        
-        alert()
-        // saveToCart({
-        //      "cartId":"",
-        //      "productId":item.id,
-        //      "count":this.quantity
-        // })
-
-        
-        this.items=item
-
-
-    }
-  }
-}
+    addToCart(item) {
+      saveToCart({
+        cartId: "50945a35-be91-44c3-8ab4-5479f5521fa3",
+        productId: item.id,
+        count: this.quantity,
+      })
+        .then((resp) => {
+          if (resp.data != null) {
+            console.log(resp.data);
+            alert("Karta elave olundu");
+          }
+        })
+        .catch(alert("Xeta bash verdi"));
+    },
+  },
+};
 </script>
 
 
 <style scoped lang='scss'>
 .shopping-cart {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 .shopping-cart.dark {
   background-color: #f6f6f6;
@@ -179,7 +206,13 @@ export default {
   font-size: 14px;
   margin-top: 15px;
 }
-.shopping-cart .items .product .info .product-name .product-info .product-info-detail {
+.shopping-cart
+  .items
+  .product
+  .info
+  .product-name
+  .product-info
+  .product-info-detail {
   margin-bottom: 15px;
 }
 .shopping-cart .items .product .info .product-name .product-info .value {
