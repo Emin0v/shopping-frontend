@@ -15,9 +15,9 @@ import "./assets/css/main.css"
 import "./assets/css/price-range.css"
 import "./assets/css/responsive.css"
 
-
-
-
 // axios.defaults.baseURL = BASE_URL;
+// let user = JSON.parse(localStorage.getItem('user'));
+
+// axios.defaults.headers={Authorization: `Bearer` + user.authToken}
 
 createApp(App).use(router).use(VueAxios, axios).mount('#body')

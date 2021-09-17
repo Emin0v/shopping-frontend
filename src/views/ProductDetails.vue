@@ -6,7 +6,9 @@
           <div class="left-sidebar">
             <h2>Category</h2>
             <div class="panel-group category-products" id="accordian">
+
               <Category v-bind:categories="categories"></Category>
+              
             </div>
 
             <div class="price-range">
@@ -179,9 +181,6 @@ export default {
     getProductDetailById(this.productId).then((resp) => {
       this.product = resp.data;
 
-      console.log(this.product);
-
-      console.log("image= > " + this.product.images);
     });
   },
 
@@ -195,6 +194,7 @@ export default {
         this.categories = response.data;
       });
     },
+
   },
 };
 </script>

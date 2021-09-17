@@ -103,6 +103,7 @@ export default {
         this.categories = response.data;
       });
     },
+
   },
 };
 </script>

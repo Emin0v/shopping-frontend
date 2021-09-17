@@ -5,16 +5,17 @@
         <div class="productinfo text-center">
           <img :src="getImageUrl(item.image)" alt="" />
           <h2>{{ item.money }} {{ item.price }}{{ item.moneySymbol }}</h2>
-       
+
           <!-- <a class="product-name" v-bind:href="'/detail/' + item.id">
           {{item.name}}</a> -->
-          <router-link 
-          :to="{path:'productDetails', query:{productId: item.id}}">
-                 {{item.name}}
+          <router-link
+            :to="{ path: 'productDetails', query: { productId: item.id } }"
+          >
+            {{ item.name }}
           </router-link>
 
           <p>{{ item.description }}</p>
-          <a href="#" class="btn btn-default add-to-cart"
+          <a @click="addToCart(item)" class="btn btn-default add-to-cart"
             ><i class="fa fa-shopping-cart"></i>Add to cart</a
           >
         </div>
@@ -31,7 +32,9 @@ export default {
   props: ["products"],
 
   data() {
-    return {};
+    return {
+      quantity: 1,
+    };
   },
 
   methods: {
@@ -44,14 +47,11 @@ export default {
         cartId: "50945a35-be91-44c3-8ab4-5479f5521fa3",
         productId: item.id,
         count: this.quantity,
-      })
-        .then((resp) => {
-          if (resp.data != null) {
-            console.log(resp.data);
-            alert("Karta elave olundu");
-          }
-        })
-        .catch(alert("Xeta bash verdi"));
+      }).then((resp) => {
+        if (resp.data != null) {
+          alert("Karta elave olundu");
+        }
+      });
     },
   },
 };

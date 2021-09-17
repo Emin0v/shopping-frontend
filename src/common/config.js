@@ -4,3 +4,5 @@ export const CART_URL = 'http://localhost:9090/api/cart';
 
 export const AUTH_URL = 'http://localhost:8509/api/auth'
 
+export const USER_URL = 'http://localhost:8509/api/users'
+

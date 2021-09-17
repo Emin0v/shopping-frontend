@@ -3,8 +3,9 @@ import Home from '../views/Home.vue'
 // import App from '../App.vue'
 // import Product from '../views/Product.vue'
 import Login from '../views/Login.vue'
-import Cart from '../views/Cart.vue'
+import CartView from '../views/CartView.vue'
 import Shop from '../views/Shop.vue'
+import Account from '../views/Account.vue'
 import ProductDetails from '../views/ProductDetails.vue'
 
 const routes = [
@@ -29,8 +30,8 @@ const routes = [
 
   {
     path: '/cart',
-    name: 'Cart',
-    component: Cart
+    name: 'CartView',
+    component: CartView
   },
 
   {
@@ -46,7 +47,12 @@ const routes = [
     path: '/shop',
     name: 'Shop',
     component: Shop,
+  },
 
+  {
+    path: '/account',
+    name: 'Account',
+    component: Account,
   },
 ]
 

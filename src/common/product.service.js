@@ -3,8 +3,13 @@ import { post } from "./api.service";
 import { PRODUCT_URL } from "./config";
 import { AUTH_URL } from "./config";
 import { CART_URL } from "./config";
+import { USER_URL } from "./config";
+
 import authHeader from './auth'; 
 
+export function getUser(id) {
+    return get(USER_URL+'/' + id,{headers:authHeader()});
+}
 
 export function getProductDetailById(id) {
     return get(PRODUCT_URL+'products/' + id);
@@ -22,9 +27,12 @@ export function getAllProducts(){
     return get(PRODUCT_URL+'products')
 }
 
+export function findByCartId(id){
+    return get(CART_URL+'/'+ id)
+}
+
 export function saveToCart(params){
-    console.log("authHeader=>"+authHeader());
-    return post(CART_URL,params,authHeader());
+    return post(CART_URL,params);
 }
 
 export function register(params){
