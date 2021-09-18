@@ -15,6 +15,7 @@ import "./assets/css/main.css"
 import "./assets/css/price-range.css"
 import "./assets/css/responsive.css"
 
+
 // axios.defaults.baseURL = BASE_URL;
 // let user = JSON.parse(localStorage.getItem('user'));
 

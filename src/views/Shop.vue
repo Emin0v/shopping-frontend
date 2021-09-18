@@ -12,7 +12,10 @@
           <div class="left-sidebar">
             <h2>Category</h2>
             <div class="panel-group category-products" id="accordian">
-              <Category @categoryId="getAllByCategoryId($event)"  v-bind:categories="categories"></Category>
+              <Category
+                @categoryId="filterProducts($event)"
+                v-bind:categories="categories"
+              ></Category>
             </div>
 
             <div class="price-range">
@@ -62,7 +65,6 @@ import { getCategories } from "@/common/product.service";
 import ProductList from "../components/ProductList.vue";
 import Category from "../components/Category.vue";
 import Pagination from "../components/Pagination.vue";
-import { getAllByCategoryId } from "@/common/product.service";
 import { getAllProducts } from "@/common/product.service";
 
 export default {
@@ -74,7 +76,8 @@ export default {
 
   data() {
     return {
-      products: [],
+      products: {},
+      allProducts: {},
       quantity: 1,
       categories: {},
     };
@@ -86,15 +89,16 @@ export default {
   },
 
   methods: {
-    getAllByCategoryId(id) {
-      getAllByCategoryId(id).then((response) => {
-        this.products = response.data;
+    filterProducts(id) {
+      this.products = this.allProducts.filter(function (el) {
+        return el.categoryId == id;
       });
     },
 
     getAllProducts() {
       getAllProducts().then((response) => {
-        this.products = response.data;
+        this.allProducts = response.data;
+        this.products = this.allProducts;
       });
     },
 
@@ -103,7 +107,6 @@ export default {
         this.categories = response.data;
       });
     },
-
   },
 };
 </script>
