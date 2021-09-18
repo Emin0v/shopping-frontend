@@ -1,6 +1,6 @@
 <template>
   <div class="container" style="background-color: whitesmoke">
-    <div style="display: flex;justify-content: center;">
+    <div style="display: flex; justify-content: center">
       <img
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHSgYF6xWVPSAvw8ArTxbvTpezslN9BPfZfA&usqp=CAU"
       />
@@ -8,27 +8,39 @@
 
     <div class="form-style-2 container">
       <div class="form-style-2-heading">Your information</div>
+
+      <div style="display:flow-root">
+        <span class="form-style-2-heading pull-right" style="color: darkred;">
+          Balance:
+          <span class="bold">
+            {{ user.balance }}
+          </span>
+        </span>
+
+        <span class="form-style-2-heading pull-left" style="color: darkgreen;">
+          Customer id:
+          <span class="bold">
+            {{ user.id }}
+          </span>
+        </span>
+      </div>
+
+       <br>
+      
       <form action="" method="post">
         <label
-          ><span>Customer id <span class="required">*</span></span>
-          <input type="text" class="input-field" readonly
-        /></label>
-        <label
           ><span>Name <span class="required">*</span></span>
-          <input type="text" class="input-field"
+          <input type="text" class="input-field" v-model="user.name"
         /></label>
         <label>
           <span>Surname <span class="required">*</span></span>
-          <input type="text" class="input-field" />
+          <input type="text" class="input-field" v-model="user.surname" />
         </label>
         <label
           ><span>Email <span class="required">*</span></span
-          ><input type="text" class="input-field"
+          ><input type="text" class="input-field" v-model="user.email"
         /></label>
-        <label
-          ><span>Balance</span
-          ><input type="number" class="input-field" readonly
-        /></label>
+
         <!-- <label
           ><span>Regarding</span
           ><select name="field4" class="select-field">
@@ -48,19 +60,15 @@ import { getUser } from "@/common/product.service";
 export default {
   data() {
     return {
-      id: '',
-      name:'',
-      surname:'',
-      email:'',
-      balance:Number
+      user: {},
     };
   },
 
   mounted() {
-         getUser('6ce17741-f535-4298-923d-1f4cd42e585f').then(resp=>{
-           console.log(resp)
-         })
-  }
+    getUser("6ce17741-f535-4298-923d-1f4cd42e585f").then((resp) => {
+      this.user = resp.data;
+    });
+  },
 };
 </script>
 

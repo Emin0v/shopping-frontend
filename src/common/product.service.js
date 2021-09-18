@@ -5,10 +5,10 @@ import { AUTH_URL } from "./config";
 import { CART_URL } from "./config";
 import { USER_URL } from "./config";
 
-import authHeader from './auth'; 
+// import authHeader from './auth'; 
 
 export function getUser(id) {
-    return get(USER_URL+'/' + id,{headers:authHeader()});
+    return get(USER_URL+'/' + id);
 }
 
 export function getProductDetailById(id) {
